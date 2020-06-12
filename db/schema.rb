@@ -10,21 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_180318) do
-
-  create_table "budgets", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.integer "list_id"
-  end
+ActiveRecord::Schema.define(version: 2020_06_12_191445) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.integer "list_id"
+  end
+
   create_table "lists", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
+    t.string "description"
+    t.float "budget"
   end
 
   create_table "lists_categories", force: :cascade do |t|
@@ -34,6 +36,8 @@ ActiveRecord::Schema.define(version: 2020_06_12_180318) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
+    t.string "email"
+    t.string "password_digest"
   end
 
 end
