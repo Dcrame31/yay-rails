@@ -1,5 +1,5 @@
 class Garden < ApplicationRecord
     belongs_to :user
-    has_many :plants
-    has_many :categories, through: :plants
+    has_many :garden_plants
+    has_many :plants, through: :garden_plants
 end
