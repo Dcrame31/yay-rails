@@ -3,5 +3,17 @@ Rails.application.routes.draw do
   root "users#index"
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
-  resources :users
+  get '/logout', to: "sessions#destroy"
+  post '/logout', to: "sessions#destroy"
+
+  resources :categories do
+    resources :lists, only: [:index, :show]
+  end
+
+  resources :lists, only: [:new, :create, :edit, :update, :destroy]
+  
+  get '/signup', to: "users#new"
+  post '/signup', to: "users#create"
+
+  resources :users, only: [:index, :edit, :update]
 end
