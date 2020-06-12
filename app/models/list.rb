@@ -1,4 +1,4 @@
-class Garden < ApplicationRecord
+class List < ApplicationRecord
     belongs_to :user
     has_many :garden_plants
     has_many :plants, through: :garden_plants

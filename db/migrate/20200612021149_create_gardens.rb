@@ -1,6 +1,6 @@
-class CreateGardens < ActiveRecord::Migration[6.0]
+class CreateLists < ActiveRecord::Migration[6.0]
   def change
-    create_table :gardens do |t|
+    create_table :lists do |t|
       t.string :name
       t.integer :user_id
     end
