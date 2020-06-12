@@ -1,5 +1,6 @@
 class List < ApplicationRecord
     belongs_to :user
-    has_many :garden_plants
-    has_many :plants, through: :garden_plants
+    has_many :lists_categories
+    has_many :categories, through: :lists_categories
+    has_many :budgets
 end
