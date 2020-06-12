@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_001725) do
+ActiveRecord::Schema.define(version: 2020_06_12_005311) do
+
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+  end
 
   create_table "gardens", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -18,6 +24,9 @@ ActiveRecord::Schema.define(version: 2020_06_12_001725) do
     t.string "name"
     t.integer "user_id"
   end
+
+# Could not dump table "plants" because of following StandardError
+#   Unknown type 'id' for column 'category'
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
