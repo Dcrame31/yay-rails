@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:index]
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
-  get '/logout', to: "sessions#destroy"
+  get '/logout', to: "sessions#destroy", as: :logout
+  delete '/logout', to: "sessions#destroy"
   
   #get 'auth/:provider/callback', to: 'sessions#create'
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
