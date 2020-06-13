@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   get '/logout', to: "sessions#destroy"
   
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get 'auth/:provider/callback', to: 'sessions#create'
   # match '/auth/google/callback', to: 'sessions#create', via: [:get, :post]
   # get "auth/failure", to: redirect(‘/’)
 
