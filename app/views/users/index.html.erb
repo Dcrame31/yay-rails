@@ -1,5 +1,10 @@
-<% if logged_in? %>
-<h1>Welcome, <%= @user.username %></h1>
+<%= flash_message %>
+
+<% if name = session[:name] %>
+  <h1>Welcome <%= name -%>!! </h1>
+
+
+    <p><%= link_to 'Log out', logout_path, method: :delete %></p>
 <% else %>
 <h1> Please <%= link_to 'sign up', signup_path %> or <%= link_to 'log in', login_path %> </h1>
 <% end %>
