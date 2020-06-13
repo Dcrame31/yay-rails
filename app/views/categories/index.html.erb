@@ -1,0 +1,5 @@
+
+<% name = session[:name] %>
+  <h1>Welcome <%= name -%>! </h1>
+  <p>You were authenticated by  <%= session[:omniauth_data]['provider'] %></p>
+
