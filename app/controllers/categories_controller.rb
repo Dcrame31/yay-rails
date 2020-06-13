@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
 
     def index
+        current_user
     end
 
     def new
