@@ -1,5 +1,5 @@
 <% if logged_in? %>
 <h1>Welcome, <%= @user.username %></h1>
 <% else %>
-Please sign up or log in
+<h1> Please <%= link_to 'sign up', signup_path %> or <%= link_to 'log in', sessions_path %> </h1>
 <% end %>
