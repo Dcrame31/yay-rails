@@ -124,7 +124,6 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.9-x86-mingw32)
       mini_portile2 (~> 2.4.0)
-    oauth (0.5.4)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
@@ -251,7 +250,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   jbuilder (~> 2.7)
   listen (~> 3.2)
-  oauth
+  omniauth
   omniauth-google-oauth2
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.1)

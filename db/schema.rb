@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_191445) do
+ActiveRecord::Schema.define(version: 2020_06_13_002814) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 2020_06_12_191445) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.string "google_token"
+    t.string "google_refresh_token"
   end
 
 end
