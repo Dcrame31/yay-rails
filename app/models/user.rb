@@ -5,9 +5,24 @@ class User < ApplicationRecord
     has_secure_password
 
     def self.find_or_create_by_omniauth(auth_hash)
-        self.where(:email => auth_hash["info"]["email"]).first_or_create do |user|
+        where(:email => auth_hash["info"]["email"]).first_or_create do |user|
             user.password = SecureRandom.hex
         end
     end
+
+   
+            # if @user = User.find_by(:email => auth_hash["info"]["email"])
+            #     session[:user_id] = @user.id
+            #     session[:name] = request.env['omniauth.auth']['info']['nickname']
+            # else
+            #     @user = User.new(:email => oauth_email, :password => SecureRandom.hex)
+            #     if @user.save
+            #         session[:user_id] = @user.id
+            #         session[:name] = request.env['omniauth.auth']['info']['nickname']
+            # end
     
 end
+
+
+
+
