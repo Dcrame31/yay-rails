@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_many :items
-    has_many :lists
-    has_many :categories, through: :lists
+    has_many :categories
+    has_many :lists, through: :categories
 
     validates :email, :presence => true
     validates :username, :presence => true, :uniqueness => true
