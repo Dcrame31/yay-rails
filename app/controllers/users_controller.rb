@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
     # before_action :require_login
+
+    def index
+        @categories = Category.all
+    end
     
     def new
         @user = User.new
@@ -10,6 +14,7 @@ class UsersController < ApplicationController
         if @user.valid?
             session[:user_id] = @user.id
             session[:name] = @user.username
+            message("You are now logged in.")
             redirect_to root_path
         else
             render '/users/new'

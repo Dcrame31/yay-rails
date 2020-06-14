@@ -1,7 +1,7 @@
 <h1>Log In</h1>
    <%= form_tag('/login', method: "post") do %>
    <%= label_tag :username %>
-   <%= collection_select(:user, :username, User.all, :username, :username, prompt: 'Please select your username') %><br>
+   <%= collection_select(:username, :username, User.all, :username, :username, prompt: 'Please select your username') %><br>
    <%= label_tag :password %>
    <%= password_field_tag :password %><br>
    <%= submit_tag "Log In"%>

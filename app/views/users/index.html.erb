@@ -1,8 +1,19 @@
 <%= flash_message %>
 
 <% if name = session[:name] %>
-  <h1>Welcome <%= name -%>!! </h1>
 
+  <h1>Welcome <%= name -%>!! </h1> 
+
+    <ol>
+        <% @categories.each do |category| %>
+            <li> 
+                <%= category.name %>
+            </li>
+        <% end %>
+    </ol>
+        <%= category_empty? %>
+        
+    <p><%= button_to 'Create Category'%></p>
 
     <p><%= link_to 'Log out', logout_path, method: :delete %></p>
 <% else %>
