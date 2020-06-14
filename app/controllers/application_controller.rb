@@ -7,7 +7,11 @@ class ApplicationController < ActionController::Base
     end
   
     def logged_in?
-      !!current_user
+      begin
+        !!User.find(session[:user_id])
+      rescue
+        false
+      end
     end
   
     def require_login
