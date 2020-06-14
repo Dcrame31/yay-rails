@@ -17,9 +17,10 @@ class SessionsController < ApplicationController
             message("You are now logged in via Github.")
             redirect_to root_path
         else
-            @user = User.find_by(email: params[:email])
+            @user = User.find_by(username: params[:username][:username])
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
+                session[:name] = @user.username
                 message("You are now logged in.")
                 redirect_to root_path
             else
