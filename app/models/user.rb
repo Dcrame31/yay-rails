@@ -2,6 +2,10 @@ class User < ApplicationRecord
     has_many :budgets
     has_many :lists
     has_many :categories, through: :lists
+
+    validates :email, :presence => true
+    validates :username, :presence => true, :uniqueness => true
+    validates :password, :presence => true
     has_secure_password
 
     def self.find_or_create_by_omniauth(auth_hash)

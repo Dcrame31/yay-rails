@@ -1,17 +1,13 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
-    helper_method :current_user, :logged_in?, :require_login
+    helper_method :current_user, :logged_in?, :require_login, :message
     
     def current_user
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
     end
   
     def logged_in?
-      begin
-        !!User.find(session[:user_id])
-      rescue
-        false
-      end
+      !!current_user
     end
   
     def require_login
@@ -19,5 +15,9 @@ class ApplicationController < ActionController::Base
         flash[:error] = "You must be logged in to access this section"
         redirect_to root_path
       end
+    end
+
+    def message(message)
+      flash[:message] = message
     end
   end
