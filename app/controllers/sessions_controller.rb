@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
         if logged_in?
             redirect_to root_path
         else
-            render 'new'
+            render '/sessions/new'
         end
     end
 
@@ -14,13 +14,13 @@ class SessionsController < ApplicationController
             @user = User.find_or_create_by_omniauth(auth_hash)
             session[:user_id] = @user.id
             session[:name] = auth_hash['info']['nickname']
-            flash[:message] = "You are now logged in via Github."
+            message("You are now logged in via Github.")
             redirect_to root_path
         else
             @user = User.find_by(email: params[:email])
             if @user && @user.authenticate(params[:password])
                 session[:user_id] = @user.id
-                flash[:message] = "You are now logged in."
+                message("You are now logged in.")
                 redirect_to root_path
             else
                 render 'new'
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
          end
     end
 
-    
+
 
     def destroy
         reset_session
@@ -38,7 +38,7 @@ class SessionsController < ApplicationController
     private
 
     def session_params
-        params.require(:session).permit(:name, :email, :password)
+        params.require(:session).permit(:name, :username, :email, :password)
     end
 
 
