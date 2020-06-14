@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     # before_action :require_login
 
     def index
-        @categories = Category.all
+        @user = current_user
     end
     
     def new
