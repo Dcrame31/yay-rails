@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_14_030930) do
+ActiveRecord::Schema.define(version: 2020_06_15_190010) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_06_14_030930) do
     t.string "name"
     t.string "description"
     t.float "budget"
+    t.integer "user_id"
   end
 
   create_table "lists_categories", force: :cascade do |t|
