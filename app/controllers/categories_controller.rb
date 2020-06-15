@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
     end
 
     def create
+        @user = current_user
         @category = Category.create(category_params)
         if @category.valid?
             message("Successfully created category.")
