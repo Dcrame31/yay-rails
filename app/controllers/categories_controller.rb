@@ -1,23 +1,17 @@
 class CategoriesController < ApplicationController
 
     def index
-        
+    
     end
 
     def new
-        @user = current_user
         @category = Category.new
+        @category.build_user
     end
 
     def create
-        @user = current_user
         @category = Category.create(category_params)
-        if @category.valid?
-            message("Successfully created category.")
-            redirect_to root_path
-        else
-            render '/categories/new'
-        end
+        redirect_to root_path
     end
 
     def edit
@@ -29,7 +23,7 @@ class CategoriesController < ApplicationController
     private
 
     def category_params
-        params.require(:category).permit(:name)
+        params.require(:category).permit(:name, :user_id, user_attributes:[:username])
     end
 
 end
