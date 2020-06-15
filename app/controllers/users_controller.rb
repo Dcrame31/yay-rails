@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
     def index
         @user = current_user
+        @category = Category.new
     end
     
     def new
