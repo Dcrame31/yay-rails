@@ -4,7 +4,18 @@
 
   <h1>Welcome <%= name -%>!!! </h1> 
 
-   
+        <h3>Lists</h3>
+        <% @user.lists.order(:name).each do |list| %>
+
+            <p>
+                <%= link_to list.name.capitalize, list %>
+            </p>
+
+        <% end %>
+
+    <p><%= link_to 'Create a new list', new_list_path %></p>
+
+        <h3>Categories</h3>
         <%= category_empty? %>
 
        <ol>
@@ -12,23 +23,15 @@
         <% @user.categories.order(:name).each do |category| %>
         
             <li> 
-                <%= link_to category.name, category_path(category) %> 
+                <%= link_to category.name.capitalize, category_path(category) %> 
             </li>
         
-                    <% category.lists.each do |list| %>
-                <ul>
-                    <li>
-                        <%= link_to list.name, category_list_path(category, list) %>
-                    </li>
-                </ul>  
-        
-                    <% end %>
         <% end %>
         </ol>
 
     <br>
 
-<p><%= link_to 'Create a new list', new_list_path %></p>
+
 <p>Create a new category</p>
 <%= form_for @category do |f| %>
 <%= f.text_field :name %>
