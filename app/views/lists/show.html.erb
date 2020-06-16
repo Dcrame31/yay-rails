@@ -1,0 +1,19 @@
+<h1><%= @list.name %></h1>
+<p>Description: <%= @list.description %></p>
+<p>Budget: $<%= @list.budget %></p>
+
+<ol>
+<% @list.items.each do |item| %>
+    <li>
+    <%= item.name %> - <%= item.price %>
+    </li>
+<% end %>
+
+<p><% @list.categories.each do |cat| %>
+<%= cat.name %>
+<% end %>
+<p><%= @list.user_id %></p>
+</ol>
+
+
+<p><%= link_to 'Home', root_path %> <%= link_to 'Log out', logout_path %></p>

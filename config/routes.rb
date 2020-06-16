@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   # get "auth/failure", to: redirect(‘/’)
 
   resources :categories do
-    resources :lists, only: [:index, :show]
+    resources :lists
   end
 
-  resources :lists, only: [:new, :create, :edit, :update, :destroy]
+  resources :lists
   
   get '/signup', to: "users#new"
   post '/signup', to: "users#create"

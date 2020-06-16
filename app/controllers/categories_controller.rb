@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
     def index
-    
+        
     end
 
     def new
@@ -14,6 +14,10 @@ class CategoriesController < ApplicationController
         redirect_to root_path
     end
 
+    def show
+        @category = current_user.categories.find_by_id(params[:id])
+    end
+
     def edit
     end
     
@@ -23,7 +27,7 @@ class CategoriesController < ApplicationController
     private
 
     def category_params
-        params.require(:category).permit(:name, :user_id, user_attributes:[:username])
+        params.require(:category).permit(:name, :user_id, user_attributes:[:username], list_attributes:[:name, :budget, :description])
     end
 
 end
