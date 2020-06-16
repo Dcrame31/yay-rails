@@ -12,13 +12,13 @@
         <% @user.categories.order(:name).each do |category| %>
         
             <li> 
-                <%= link_to category.name %>
+                <%= link_to category.name, category_path(category) %> 
             </li>
         
                     <% category.lists.each do |list| %>
                 <ul>
                     <li>
-                        <%= link_to list.name %>
+                        <%= link_to list.name, category_list_path(category, list) %>
                     </li>
                 </ul>  
         
@@ -28,13 +28,16 @@
 
     <br>
 
+<p><%= link_to 'Create a new list', new_list_path %></p>
 <p>Create a new category</p>
 <%= form_for @category do |f| %>
-<%= f.label :name %>
 <%= f.text_field :name %>
-<%= f.hidden_field :user_id, :value => @user.id %>
+<%= f.hidden_field :user_id, :value => @user.id %><br>
 <%= f.submit 'Create Category' %><br>
 <% end %>
+
+    <br>
+
 
 
 
