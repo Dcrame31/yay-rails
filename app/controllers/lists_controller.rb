@@ -3,11 +3,13 @@ class ListsController < ApplicationController
 
     def new
         @list = List.new
-        @list.categories.build
-        @list.items.build
-        @list.items.build
-        @list.items.build
         @user = current_user
+
+        5.times do 
+            @list.items.build 
+        end
+
+        @list.categories.build
     end
 
     def create
@@ -34,6 +36,6 @@ class ListsController < ApplicationController
     private
 
     def list_params
-        params.require(:list).permit(:name, :budget, :description, :user_id, category_ids:[], category_attributes:[:name], item_attributes:[:name, :price])
+        params.require(:list).permit(:name, :budget, :description, :user_id, category_ids:[], categories_attributes:[:name, :user_id], items_attributes:[:name, :price])
     end
 end

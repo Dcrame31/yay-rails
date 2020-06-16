@@ -5,12 +5,12 @@
 <ol>
 <% @list.items.each do |item| %>
     <li>
-    <%= item.name %> - <%= item.price %>
+    <%= item.name %> - $<%= item.price %>
     </li>
 <% end %>
 
-<p><% @list.categories.each do |cat| %>
-<%= cat.name %>
+<p>Category: <% @list.categories.each do |cat| %>
+<%= link_to cat.name, cat %>
 <% end %>
 <p><%= @list.user_id %></p>
 </ol>
