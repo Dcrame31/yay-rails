@@ -31,5 +31,6 @@
     <%= category.text_field :name %><br>
     <%= category.hidden_field :user_id, :value => @user.id %>
   <% end %>
+<%= f.hidden_field :user_id, :value => @user.id%>
 <%= f.submit 'Create List' %><br>
 <% end %>
