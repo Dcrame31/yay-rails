@@ -22,5 +22,5 @@ class List < ApplicationRecord
             self.categories << category
           end
         end
-      end
+    end
 end
