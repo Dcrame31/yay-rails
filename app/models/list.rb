@@ -4,7 +4,8 @@ class List < ApplicationRecord
     has_many :items
     validates :name, :presence => true
     validates :budget, :presence => true
-    validates :category_ids, :presence => true
+    validates :category_ids, :presence => true 
+    # validate :category_present?
 
     # def categories_attributes=(category_attributes)
     #     category_attributes.values.each do |category_attribute|
@@ -12,6 +13,12 @@ class List < ApplicationRecord
     #       self.categories << category
     #     end
     # end
+
+    def category_present?
+            errors.add[:category_ids, "Must include a category"] unless category_ids.present?
+       
+
+    end
 
     def categories_attributes=(category_attributes)
         category_attributes.values.each do |category_attribute|
@@ -30,4 +37,6 @@ class List < ApplicationRecord
           end
         end
     end
+
+
 end

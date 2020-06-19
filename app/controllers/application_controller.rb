@@ -20,4 +20,5 @@ class ApplicationController < ActionController::Base
     def message(message)
       flash[:message] = message
     end
+    
   end
