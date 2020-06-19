@@ -33,10 +33,15 @@ class CategoriesController < ApplicationController
         end
     end
 
+    def destroy
+        Category.find_by(id:params[:id]).destroy
+        redirect_to root_path
+    end
+
     private
 
     def category_params
-        params.require(:category).permit(:name, :user_id, user_attributes:[:username])
+        params.require(:category).permit(:name, :user_id)
     end
 
 end

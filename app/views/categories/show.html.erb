@@ -7,7 +7,8 @@
     <% end %>
 </ol>
 
-<%= button_to 'Edit Category', edit_category_path(@category), :method => :get %>
+<p><%= button_to 'Edit Category', edit_category_path(@category), :method => :get %></p>
+<p><%= button_to 'Delete Category', @category, :method => :delete %>
 
 <p><%= link_to 'Create a new list', new_category_list_path(@category) %></p>
 
