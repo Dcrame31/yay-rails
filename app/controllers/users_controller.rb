@@ -18,7 +18,7 @@ class UsersController < ApplicationController
             message("You are now logged in.")
             redirect_to root_path
         else
-            render '/users/new'
+            render :new
         end
     end
 
