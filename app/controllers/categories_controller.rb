@@ -19,9 +19,18 @@ class CategoriesController < ApplicationController
     end
 
     def edit
+        @category = Category.find_by(id:params[:id])
+        @user = current_user
     end
     
     def update
+        @category = Category.find_by(id:params[:id])
+        @category.update(category_params)
+        if @category.valid?
+            redirect_to @category
+        else
+            render '/categories/edit'
+        end
     end
 
     private

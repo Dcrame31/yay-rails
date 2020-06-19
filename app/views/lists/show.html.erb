@@ -9,7 +9,7 @@
     </li>
 <% end %>
 </ol>
-<p><%= link_to 'Edit list', edit_list_path(@list) %></p>
+<p><%= button_to 'Edit list', edit_list_path(@list), :method => :get %> | <%= button_to 'Delete list', list_path(@list), :method => 'delete' %></p>
 
 <p>Category: <% @list.categories.uniq.each do |cat| %>
 <%= link_to cat.name, cat %>
