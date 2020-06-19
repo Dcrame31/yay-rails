@@ -11,7 +11,7 @@
 </ol>
 <p><%= link_to 'Edit list', edit_list_path(@list) %></p>
 
-<p>Category: <% @list.categories.each do |cat| %>
+<p>Category: <% @list.categories.uniq.each do |cat| %>
 <%= link_to cat.name, cat %>
 <% end %>
 

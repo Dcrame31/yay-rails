@@ -36,11 +36,12 @@ class ListsController < ApplicationController
       def edit
         @list = List.find_by_id(params[:id])
 
-        # list_builder
+        list_builder
       end
 
       def update
         @list = List.find_by_id(params[:id])
+        clear_content
         @list.update(list_params)
         if @list.valid?
             redirect_to @list
@@ -69,6 +70,12 @@ class ListsController < ApplicationController
         5.times do 
             @list.items.build 
         end
+    end
+
+    def clear_content
+        @list.category_ids.clear
+        @list.categories.clear
+        @list.items.clear
     end
 
 end
