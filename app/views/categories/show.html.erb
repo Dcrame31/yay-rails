@@ -2,10 +2,12 @@
 <ol>
 <% @category.lists.each do |list| %>
     <li>
-        <%= link_to list.name, list %>
+        <%= link_to list.name, category_list_path(list) %>
     </li>
     <% end %>
 </ol>
+
+<%= button_to 'Edit Category', edit_category_path(@category), :method => :get %>
 
 <p><%= link_to 'Create a new list', new_category_list_path(@category) %></p>
 
