@@ -5,6 +5,7 @@ class List < ApplicationRecord
     validates :name, :presence => true
     validates :budget, :presence => true
     validates :categories, :presence => true 
+    validates_uniqueness_of :name, :case_sensitive => false
     # validate :category_present?
 
     # def categories_attributes=(category_attributes)
