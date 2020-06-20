@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
     before_action :require_login
+    
 
     def new
         @list = List.new

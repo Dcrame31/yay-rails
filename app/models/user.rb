@@ -25,6 +25,13 @@ class User < ApplicationRecord
             #         session[:name] = request.env['omniauth.auth']['info']['nickname']
             # end
     
+    def self.current
+        Thread.current[:user]
+    end
+
+    def self.current=(user)
+        Thread.current[:user] = user
+    end        
 end
 
 
