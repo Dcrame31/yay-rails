@@ -1,9 +1,11 @@
 <%= render partial: 'errors', locals: {category: @category} %>
 
+
 <h1><%= @category.name %></h1>
+<%= category_lists_empty? %>
 
 <ol>
-    <% @category.lists.uniq.each do |list| %>
+    <% @category.lists.each do |list| %>
 
     <li>
         <%= link_to list.name, category_list_path(@category, list) %>

@@ -3,4 +3,8 @@ class Item < ApplicationRecord
     validates :name, :presence => true
     validates :price, :presence => true
     # accepts_nested_attributes_for :list
+
+    def item_cost
+        self.qty * self.price
+    end
 end

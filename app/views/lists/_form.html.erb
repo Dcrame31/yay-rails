@@ -35,5 +35,6 @@
 <input value type="text" name="list[categories_attributes][0][name]" id="list_categories_attributes_0_name"><br>
 <input value="current_use.id" type="hidden" name="list[categories_attributes][0][user_id]" id="list_categories_attributes_0_name">
 <%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :category_ids, :value => @category %>
 <%= f.submit list.persisted? ? 'Update List': 'Create List' %><br>
 <% end %>
