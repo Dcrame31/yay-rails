@@ -6,7 +6,7 @@
     <% @category.lists.each do |list| %>
 
     <li>
-        <%= link_to list.name, category_list_path(list) %>
+        <%= link_to list.name, category_list_path(@category, list) %>
     </li>
     <% end %>
 </ol>

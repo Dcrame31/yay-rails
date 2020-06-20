@@ -31,12 +31,12 @@ class ListsController < ApplicationController
         #   @list = List.find(params[:id])
         # end
         if params[:category_ids]
-            @category = Category.find_by(id: params[:category_ids]) 
-            @list = @category.lists.find_by(id: params[:id]) if @category
+            @category = current_user.categories.find(params[:category_ids]) 
+            @list = @category.lists.find(params[:id]) if @category
             if !@list
             # if @artist && !(@song = @artist.songs.find_by(id: params[:id]))
               message("List not found")
-              redirect_to category_lists_path(@category)
+              redirect_to category_path(@category)
             end
         else
             @list = List.find_by(id:params[:id])
