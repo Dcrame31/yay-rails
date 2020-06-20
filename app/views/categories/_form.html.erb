@@ -1,5 +1,5 @@
 <%= form_for @category do |f| %>
 <%= f.text_field :name %>
-<%= f.hidden_field :user_id, :value => @user.id %><br>
+<%= f.hidden_field :user_id, :value => current_user.id %><br>
 <%= f.submit 'Create Category' %><br>
 <% end %>
