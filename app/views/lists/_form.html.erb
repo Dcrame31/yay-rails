@@ -29,10 +29,11 @@
 <%= f.collection_check_boxes :category_ids, current_user.categories.all, :id, :name %><br>
 <br>
 <%= f.label 'New Category'%><br>
-<%= f.fields_for :categories do |category| %>
-    <%= category.text_field :name %><br>
-    <%= category.hidden_field :user_id, :value => current_user.id %>
-  <% end %>
-<%= f.hidden_field :user_id, :value => current_user.id%>
+<%# <%= f.fields_for :categories do |category| %> 
+    <%# <%= category.hidden_field :user_id, :value => "current_user.id" %> 
+  <%# <% end %> 
+<input value type="text" name="list[categories_attributes][0][name]" id="list_categories_attributes_0_name"><br>
+<input value="current_use.id" type="hidden" name="list[categories_attributes][0][user_id]" id="list_categories_attributes_0_name">
+<%= f.hidden_field :user_id, :value => current_user.id %>
 <%= f.submit list.persisted? ? 'Update List': 'Create List' %><br>
 <% end %>

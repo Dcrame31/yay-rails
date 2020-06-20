@@ -92,7 +92,6 @@ class ListsController < ApplicationController
 
     def clear_content
         @list.category_ids.clear
-        @list.categories.clear
         @list.items.clear
     end
 

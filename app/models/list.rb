@@ -5,16 +5,7 @@ class List < ApplicationRecord
     validates :name, :presence => true
     validates :budget, :presence => true
     validates :categories, :presence => true 
-    
-    # validates_uniqueness_of :name, :case_sensitive => false
-    
-
-    
-    def list_unique?
-      if current_user.lists.include?(:name)
-        errors.add(:name, "List already exists")
-      end
-    end
+    validates_uniqueness_of :name, scope: :user_id, :case_sensitive => false
 
     def categories_attributes=(category_attributes)
         category_attributes.values.each do |category_attribute|

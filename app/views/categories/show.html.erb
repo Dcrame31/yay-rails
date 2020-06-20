@@ -3,7 +3,7 @@
 <h1><%= @category.name %></h1>
 
 <ol>
-    <% @category.lists.each do |list| %>
+    <% @category.lists.uniq.each do |list| %>
 
     <li>
         <%= link_to list.name, category_list_path(@category, list) %>
