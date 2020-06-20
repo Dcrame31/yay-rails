@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     helper_method :current_user, :logged_in?, :require_login, :message
+    before_action :set_current_user
     
     def current_user
       @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
@@ -21,4 +22,7 @@ class ApplicationController < ActionController::Base
       flash[:message] = message
     end
     
+    def set_current_user
+      User.current = current_user
+    end
   end
