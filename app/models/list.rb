@@ -25,5 +25,10 @@ class List < ApplicationRecord
         end
     end
 
+    def list_cost
+      self.items.reduce(0) do |s, item|
+        s += item.item_cost
+      end
+    end
 
 end

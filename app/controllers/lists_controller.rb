@@ -6,8 +6,21 @@ class ListsController < ApplicationController
         @list = List.new
         
         list_builder
-
         @list.categories.build
+
+        if params[:category_ids]
+            @category = current_user.categories.find(params[:category_ids]) 
+            @list.update(category_ids: @category)
+        end
+        # if params[:category_ids]
+        #     @category = current_user.categories.find_by_id(params[:category_ids])
+        #     @list = List.new if @category
+        #     @list.update(category_ids: @category)
+        #     list_builder
+        #     @list.categories.build
+        # else
+        #     @list = List.new
+        # end
     end
 
     def create
