@@ -19,7 +19,7 @@ class List < ApplicationRecord
     def items_attributes=(item_attributes)
         item_attributes.values.each do |item_attribute|
           if item_attribute[:name].present?
-            item = Item.find_or_create_by(item_attribute)
+            item = User.current.items.find_or_create_by(item_attribute)
             self.items << item
           end
         end
@@ -27,7 +27,25 @@ class List < ApplicationRecord
 
     def list_cost
       self.items.reduce(0) do |s, item|
-        s += item.item_cost
+        s += item.item_cost.to_i
+      end
+    end
+
+    def budget_over
+      self.list_cost.to_i - self.budget.to_i
+    end
+
+    def budget_under
+      self.budget.to_i - self.list_cost.to_i
+    end
+
+    def budget_result
+      if self.list_cost.to_i > self.budget.to_i
+        "You are $#{budget_over} over budget!"
+      elsif self.list_cost.to_i < self.budget.to_i
+        "You are $#{budget_under} under budget!"
+      else
+        "You are right on budget!"
       end
     end
 

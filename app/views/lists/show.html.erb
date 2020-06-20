@@ -1,3 +1,4 @@
+
 <h1><%= @list.name %></h1>
 <p>Description: <%= @list.description %></p>
 <p>Budget: $<%= @list.budget %></p>
@@ -5,10 +6,16 @@
 <ol>
 <% @list.items.each do |item| %>
     <li>
-    <%= item.name %> - $<%= item.price %>
+    <%= item.name %> --- $<%= item.item_cost %> 
     </li>
 <% end %>
+<p>Total: $<%= @list.list_cost %></p>
 </ol>
+
+<%= @list.budget_result %>
+<br>
+<br>
+<%= render 'items/form' %>
 <p><%= button_to 'Edit list', edit_list_path(@list), :method => :get %></p>
 <p><%= button_to 'Delete list', list_path(@list), :method => 'delete' %></p>
 

@@ -3,15 +3,20 @@ class ListsController < ApplicationController
     
 
     def new
-        @list = List.new
+        @list = List.new :category_ids => params[:category_ids]
+        # if params[:category_ids]
+        #     @list = List.new(category_ids: params[:category_ids])
+        # else
+        #     @list = List.new
+        # end
         
         list_builder
         @list.categories.build
 
-        if params[:category_ids]
-            @category = current_user.categories.find(params[:category_ids]) 
-            @list.update(category_ids: @category)
-        end
+        # if params[:category_ids]
+        #     @category = current_user.categories.find(params[:category_ids]) 
+        #     @list.update(category_ids: @category)
+        # end
         # if params[:category_ids]
         #     @category = current_user.categories.find_by_id(params[:category_ids])
         #     @list = List.new if @category
@@ -47,6 +52,8 @@ class ListsController < ApplicationController
         if params[:category_ids]
             @category = current_user.categories.find(params[:category_ids]) 
             @list = @category.lists.find(params[:id]) if @category
+            @list.items.build
+
             if !@list
             # if @artist && !(@song = @artist.songs.find_by(id: params[:id]))
               message("List not found")
@@ -54,6 +61,7 @@ class ListsController < ApplicationController
             end
         else
             @list = List.find_by(id:params[:id])
+            @list.items.build
         end
     #     @list = List.find_by_id(params[:id])
     end
@@ -77,6 +85,7 @@ class ListsController < ApplicationController
 
     def destroy
         @list = List.find_by(id:params[:id])
+        @list.items.clear
         @list.destroy!
         redirect_to root_path
     end
@@ -92,7 +101,8 @@ class ListsController < ApplicationController
             items_attributes:[
                 :name, 
                 :price,
-                :qty
+                :qty,
+                :list_id
                 ]
             )
     end
