@@ -30,16 +30,27 @@ class ListsController < ApplicationController
         # else
         #   @list = List.find(params[:id])
         # end
-        @list = List.find_by_id(params[:id])
-      end
+        if params[:category_ids]
+            @category = Category.find_by(id: params[:category_ids]) 
+            @list = @category.lists.find_by(id: params[:id]) if @category
+            if !@list
+            # if @artist && !(@song = @artist.songs.find_by(id: params[:id]))
+              message("List not found")
+              redirect_to category_lists_path(@category)
+            end
+        else
+            @list = List.find_by(id:params[:id])
+        end
+    #     @list = List.find_by_id(params[:id])
+    end
 
-      def edit
+    def edit
         @list = List.find_by_id(params[:id])
 
         list_builder
-      end
+    end
 
-      def update
+    def update
         @list = List.find_by_id(params[:id])
         clear_content
         @list.update(list_params)
@@ -48,13 +59,13 @@ class ListsController < ApplicationController
         else
             render 'edit'
         end
-      end
+    end
 
-      def destroy
+    def destroy
         @list = List.find_by(id:params[:id])
         @list.destroy!
         redirect_to root_path
-      end
+    end
 
     private
 

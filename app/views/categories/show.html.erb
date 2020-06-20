@@ -1,16 +1,20 @@
+<%= render partial: 'errors', locals: {category: @category} %>
+
 <h1><%= @category.name %></h1>
+
 <ol>
-<% @category.lists.each do |list| %>
+    <% @category.lists.each do |list| %>
+
     <li>
         <%= link_to list.name, category_list_path(list) %>
     </li>
     <% end %>
 </ol>
 
-<p><%= button_to 'Edit Category', edit_category_path(@category), :method => :get %></p>
-<p><%= button_to 'Delete Category', @category, :method => :delete %>
+<p><%= render 'edit' %></p>
+<p><%= render 'delete' %></p>
 
 <p><%= link_to 'Create a new list', new_category_list_path(@category) %></p>
 
 
-<p><%= link_to 'Home', root_path %>  <%= link_to 'Log out', logout_path, method: :delete %></p>
+<p><%= render 'users/home' %>  <%= render 'users/logout' %></p>

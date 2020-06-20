@@ -1,10 +1,10 @@
-<%= flash_message %>
-
 <% if name = session[:name] %>
 
   <h1>Welcome <%= name -%>!!! </h1> 
 
         <h3>Lists</h3>
+        <%= list_empty? %>
+
         <% @user.lists.order(:name).each do |list| %>
 
             <p>
@@ -40,7 +40,7 @@
 
 
 
-    <p><%= link_to 'Log out', logout_path, method: :delete %></p>
+    <p><%= render 'logout' %></p>
 <% else %>
     <h1> Please <%= link_to 'sign up', signup_path %> or <%= link_to 'log in', login_path %> </h1>
 <% end %>
