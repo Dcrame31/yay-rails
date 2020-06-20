@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
     end
 
     def edit
-        @category = Category.find_by(id:params[:id])
+        @category = current_user.categories.find_by(id:params[:id])
         @user = current_user
     end
     
