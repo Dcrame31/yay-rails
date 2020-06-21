@@ -7,7 +7,12 @@ class ItemsController < ApplicationController
 
     def create
         @item = Item.create(item_params)
-        redirect_to list_path(@item.list_id)
+        if @item.valid?
+            redirect_to list_path(@item.list_id)
+        else
+            message("Item not valid.")
+            redirect_to list_path(@item.list_id)
+        end
     end
 
     private

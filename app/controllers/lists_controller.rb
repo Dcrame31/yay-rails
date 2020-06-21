@@ -53,7 +53,7 @@ class ListsController < ApplicationController
             @category = current_user.categories.find(params[:category_ids]) 
             @list = @category.lists.find(params[:id]) if @category
             @item = Item.new
-
+            
             if !@list
             # if @artist && !(@song = @artist.songs.find_by(id: params[:id]))
               message("List not found")
