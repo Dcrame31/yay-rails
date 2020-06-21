@@ -19,7 +19,7 @@ class List < ApplicationRecord
     def items_attributes=(item_attributes)
         item_attributes.values.each do |item_attribute|
           if item_attribute[:name].present?
-            item = User.current.items.find_or_create_by(item_attribute)
+            item = Item.find_or_create_by(item_attribute)
             self.items << item
           end
         end
