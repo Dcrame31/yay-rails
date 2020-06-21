@@ -2,12 +2,14 @@ class List < ApplicationRecord
     has_many :lists_categories
     has_many :categories, through: :lists_categories
     has_many :items
+
     validates :name, :presence => true
     validates :budget, :presence => true
     validates :categories, :presence => true 
     validates_uniqueness_of :name, scope: :user_id, :case_sensitive => false
     validate :zero?
-    scope :on_budget, -> { where(:budget >= :list_cost)}
+
+    scope :highest_budget, -> { where(budget: self.maximum(:budget))}
 
     def categories_attributes=(category_attributes)
         category_attributes.values.each do |category_attribute|
@@ -41,10 +43,6 @@ class List < ApplicationRecord
       self.budget.to_f - self.list_cost.to_f
     end
 
-    def on_budget
-      self.budget.to_f >= self.list_cost.to_f
-    end
-
     def budget_result
       if self.list_cost.to_f > self.budget.to_f
         "You are $#{budget_over} over budget!"
@@ -65,6 +63,6 @@ class List < ApplicationRecord
       end
     end
 
-
+    
 
 end
