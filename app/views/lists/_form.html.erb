@@ -14,7 +14,7 @@
     <%= item.label :qty %>
     <%= item.number_field :qty %>
     <%= item.label :price %>
-    <%= item.number_field :price %><br>
+    <%= item.number_field :price, :step => 0.01 %><br>
     <br>
     <%= item.hidden_field :list_id, :value => @list.id %>
     <% end %>

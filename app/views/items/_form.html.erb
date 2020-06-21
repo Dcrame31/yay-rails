@@ -5,7 +5,7 @@
 <%= f.label :name %>
 <%= f.text_field :name %>
 <%= f.label :qty %>
-<%= f.number_field :qty %>
+<%= f.number_field :qty, :step => 0.01 %>
 <%= f.label :price %>
 <%= f.number_field :price %> 
 <%= f.hidden_field :list_id, :value => @list.id %>
