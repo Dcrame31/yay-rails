@@ -2,7 +2,6 @@ class UsersController < ApplicationController
     # before_action :require_login
 
     def index
-        @user = current_user
         @category = Category.new
     end
     
@@ -31,7 +30,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password, :admin)
     end
 
 end
