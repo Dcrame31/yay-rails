@@ -52,7 +52,7 @@ class ListsController < ApplicationController
         if params[:category_ids]
             @category = current_user.categories.find(params[:category_ids]) 
             @list = @category.lists.find(params[:id]) if @category
-            @list.items.build
+            @item = Item.new
 
             if !@list
             # if @artist && !(@song = @artist.songs.find_by(id: params[:id]))
@@ -61,9 +61,8 @@ class ListsController < ApplicationController
             end
         else
             @list = List.find_by(id:params[:id])
-            @list.items.build
+            @item = Item.new
         end
-    #     @list = List.find_by_id(params[:id])
     end
 
     def edit

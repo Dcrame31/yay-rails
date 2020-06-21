@@ -1,15 +1,13 @@
-<%= form_for @list.items.build do |f| %>
-<input type="text" name="item[name]" id="item_name">
+<%= form_for @item do |f| %>
+<%# <input type="text" name="item[name]" id="item_name">
 <input type="text" name="item[price]" id="item_price">
-<input type="hidden" name="item[list_id]" id="item_list_id">
-<%# <%= f.label :name %>
-<%# <%= f.text_field :name %> %>
-<%# <%= f.label :price %> %>
-<%# <%= f.number_field :price %> %> %>
-<%# <label for="Name"></label>
-<input value type="text" name="list[items_attributes][0][name]" id="list_items_attributes_0_name"><br>
-<input value type="text" name="list[items_attributes][0][qty]" id="list_items_attributes_0_qty"><br>
-<input value type="text" name="list[items_attributes][0][price]" id="list_items_attributes_0_price"><br>
-<input value="list_id" type="hidden" name="list[items_attributes][0][list_id]" id="list_items_attributes_0_list_id"> %>
+<input type="hidden" name="item[list_id]" id="item_list_id"> %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.label :qty %>
+<%= f.number_field :qty %>
+<%= f.label :price %>
+<%= f.number_field :price %> 
+<%= f.hidden_field :list_id, :value => @list.id %>
 <%= f.submit 'Add Item' %><br>
 <% end %>
