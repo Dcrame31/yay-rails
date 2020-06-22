@@ -68,7 +68,8 @@ class ListsController < ApplicationController
 
     def destroy
         @list = List.find_by(id:params[:id])
-        @list.items.clear
+        @list.items.destroy
+        @list.categories.destroy
         @list.destroy!
         redirect_to root_path
     end
@@ -95,6 +96,7 @@ class ListsController < ApplicationController
             @list.items.build 
         end
     end
+
 
     def clear_content
         @list.category_ids.clear

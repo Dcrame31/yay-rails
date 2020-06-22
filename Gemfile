@@ -27,8 +27,15 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap'
 gem 'bootstrap'
+gem 'jquery-rails'
+gem 'bootstrap-sass', '3.3.7'
+
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.2'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
