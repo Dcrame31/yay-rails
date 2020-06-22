@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
     before_action :require_login
-    
+    before_action :admin?, only: [:index]
 
     def new
         @list = List.new :category_ids => params[:category_ids]
@@ -53,15 +53,20 @@ class ListsController < ApplicationController
             @category = current_user.categories.find(params[:category_ids]) 
             @list = @category.lists.find(params[:id]) if @category
             @item = Item.new
-            
+
             if !@list
             # if @artist && !(@song = @artist.songs.find_by(id: params[:id]))
               message("List not found")
               redirect_to category_path(@category)
             end
         else
-            @list = List.find_by(id:params[:id])
-            @item = Item.new
+            if
+                @list = List.find_by(id:params[:id])
+                @item = Item.new
+            elsif !@list
+                message("List not found")
+                redirect_to root_path
+            end
         end
     end
 
