@@ -2,14 +2,15 @@ class List < ApplicationRecord
     has_many :lists_categories
     has_many :categories, through: :lists_categories,
               dependent: :nullify
-    has_many :items
-
+    has_many :items,
+              dependent: :nullify
     validates :name, :presence => true
     validates :budget, :presence => true
     validates :categories, :presence => true 
     validates_uniqueness_of :name, scope: :user_id, :case_sensitive => false
     validate :price_zero?
 
+    scope :most_recent_list, -> {order(:created_at).last}
     scope :highest_budget, -> { where(budget: self.maximum(:budget))}
 
     def categories_attributes=(category_attributes)
@@ -63,7 +64,5 @@ class List < ApplicationRecord
         end
       end
     end
-
-    
 
 end
