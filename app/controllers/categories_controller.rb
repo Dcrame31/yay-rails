@@ -3,7 +3,6 @@ class CategoriesController < ApplicationController
     before_action :admin_access, only: [:index]
 
     def index
-        
     end
 
     def new

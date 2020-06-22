@@ -2,6 +2,9 @@ class ListsController < ApplicationController
     before_action :require_login
     before_action :admin_access, only: [:index]
 
+    def index
+    end
+
     def new
         @list = List.new :category_ids => params[:category_ids]
         # if params[:category_ids]
@@ -38,18 +41,7 @@ class ListsController < ApplicationController
     end 
 
     def show
-        # if params[:category_id]
-        #   @category = current_user.categories.find_by(id: params[:category_id]) 
-        #   @list = @category.lists.find_by(id: params[:id]) if @category
-        #   if !@list
-        #   # if @artist && !(@song = @artist.songs.find_by(id: params[:id]))
-        #     message("List not found")
-        #     redirect_to category_lists_path(@category)
-        #   end
-        # else
-        #   @list = List.find(params[:id])
-        # end
-        
+
         if admin?
             admin_access
         else
