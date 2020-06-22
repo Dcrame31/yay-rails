@@ -1,7 +1,14 @@
 <% if admin? %>
+    <%= category_lists_empty? %>
+
+    <% @category.lists.each do |list| %>
+    <li><%= link_to list.name, list %></p>
+    <% end %>
 
     <p><%= render partial: 'form', locals: {category: @category} %></p>
     <p><%= render 'delete' %></p>
+
+    <p><%= render 'users/home' %>  <%= render 'users/logout' %></p>
 
 <% else %>
 
@@ -24,6 +31,8 @@
 <p><%= render 'delete' %></p>
 
 <p><%= link_to 'Create a new list', new_category_list_path(@category) %></p>
-<% end %>
+
 
 <p><%= render 'users/home' %>  <%= render 'users/logout' %></p>
+
+<% end %>

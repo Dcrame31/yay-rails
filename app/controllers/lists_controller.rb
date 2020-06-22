@@ -49,24 +49,11 @@ class ListsController < ApplicationController
         # else
         #   @list = List.find(params[:id])
         # end
-        if params[:category_ids]
-            @category = current_user.categories.find(params[:category_ids]) 
-            @list = @category.lists.find(params[:id]) if @category
-            @item = Item.new
-
-            if !@list
-            # if @artist && !(@song = @artist.songs.find_by(id: params[:id]))
-              message("List not found")
-              redirect_to category_path(@category)
-            end
+        
+        if admin?
+            admin_access
         else
-            if
-                @list = current_user.lists.find_by(id:params[:id])
-                @item = Item.new
-            elsif !@list
-                message("List not found")
-                redirect_to root_path
-            end
+            regular_user_access
         end
     end
 
@@ -122,4 +109,40 @@ class ListsController < ApplicationController
         @list.items.clear
     end
 
+    def admin_access
+        if params[:category_ids]
+            @category = Category.all.find_by(id:params[:id])
+            @list = @category.lists.find(params[:id]) if @category
+            @item = Item.new
+            if !@list
+                message("List not found")
+                redirect_to categories_path
+            end
+        else
+            @list = List.all.find_by(id:params[:id])
+            @item = Item.new
+            if !@list
+                redirect_to lists_path
+            end
+        end
+    end
+
+    def regular_user_access
+        if params[:category_ids]
+            @category = current_user.categories.find(params[:category_ids]) 
+            @list = @category.lists.find(params[:id]) if @category
+            @item = Item.new
+                if !@list
+                    message("List not found")
+                    redirect_to @category
+                end
+        else
+            @list = current_user.lists.find_by(id:params[:id])
+            @item = Item.new
+            if !@list
+                message("List not found")
+                redirect_to root_path
+            end
+        end
+    end
 end
