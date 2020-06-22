@@ -1,3 +1,11 @@
+<% if admin? %>
+
+    <p><%= render partial: 'form', locals: {category: @category} %></p>
+    <p><%= render 'delete' %></p>
+
+<% else %>
+
+
 <%= render partial: 'errors', locals: {category: @category} %>
 
 <h1><%= @category.name %></h1>
@@ -16,6 +24,6 @@
 <p><%= render 'delete' %></p>
 
 <p><%= link_to 'Create a new list', new_category_list_path(@category) %></p>
-
+<% end %>
 
 <p><%= render 'users/home' %>  <%= render 'users/logout' %></p>

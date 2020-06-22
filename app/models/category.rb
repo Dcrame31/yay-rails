@@ -4,7 +4,7 @@ class Category < ApplicationRecord
     has_many :lists, through: :lists_categories
     belongs_to :user
     accepts_nested_attributes_for :user
-    validates_uniqueness_of :name, scope: :user, :case_sensitive => false
+    validates_uniqueness_of :name, scope: :user_id, :case_sensitive => false
     validates :name, :presence => true
     
     
