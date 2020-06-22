@@ -2,6 +2,6 @@
 <div class='form-group'>
 <%= f.text_field :name %>
 </div>
-<%= f.hidden_field :user_id, :value => current_user.id %><br>
+<%= f.hidden_field :user_id, :value => current_user.id %>
 <%= f.submit category.persisted? ? 'Update Category': 'Create Category', class:"btn btn-primary" %><br>
 <% end %>

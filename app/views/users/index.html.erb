@@ -51,20 +51,24 @@
 
     <br>
 
+        <%= render 'search' %>
+        <% @lists.each do |list| %>
+            <li><%= link_to list.name, list %></li>
+        <% end %>
+
 
     <% end  %>
-
+        </div>
+</div>
     <p><%= render 'logout' %></p>
         
 <% else %>
-    
-        
+    <div class="center">
+        <div class="info">
         <h1>Welcome to Budget-Lister!</h1>
         <p>A helpful budgeting app</p>
         <img src="/assets/budget.png" alt="calculator_image" class="img-responsive" width = "40%">
         <%# <img src="/notepad.png" alt="notebook_image" class="image"> %>
-        
-    
-<% end %>
         </div>
-</div>
+    </div>
+<% end %>
