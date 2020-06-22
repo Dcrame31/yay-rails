@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   post '/signup', to: "users#create"
 
   resources :users
-
+  get '/users', to: "users#users", as: "all_users"
 
   resources :items, only: [:new, :create]
 end

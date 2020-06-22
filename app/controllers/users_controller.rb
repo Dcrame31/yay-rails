@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
     # before_action :require_login
+    before_action :admin_access, only: [:users]
 
     def index
         @category = Category.new
+    end
+
+    def users
+        @user = User.all
     end
     
     def new

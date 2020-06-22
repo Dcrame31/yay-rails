@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
     before_action :require_login
-    before_action :admin?, only: [:index]
+    before_action :admin_access, only: [:index]
 
     def new
         @list = List.new :category_ids => params[:category_ids]

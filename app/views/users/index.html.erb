@@ -5,7 +5,7 @@
   <h1>Welcome <%= name %>!!! </h1> 
 
     <% if current_user.admin %>
-        <p> <%= link_to 'View users', users_path %>
+        <p> <%= link_to 'View users', all_users_path %>
         <p>  <%=link_to 'View lists', lists_path %> </p>
         <p> <%= link_to 'View categories', categories_path %></p>
         <p>Admin</p>
