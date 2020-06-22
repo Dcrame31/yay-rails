@@ -33,11 +33,19 @@ class User < ApplicationRecord
         Thread.current[:user] = user
     end        
 
+    def last_created_list
+      self.lists.last(2)
+    end
+
+    def all_lists
+      self.lists.all
+    end
+
     def search(query)
         if query
           self.lists.where("name LIKE ? OR description LIKE ?", "%#{query}%", "%#{query}%")
         else
-          self.lists.all
+          all_lists
         end
       end
 end

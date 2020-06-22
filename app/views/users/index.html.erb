@@ -50,10 +50,13 @@
 <%= render partial: '/categories/form', locals: {category: @category} %>
 
     <br>
-
+        <% if current_user.lists.nil? %>
+        <p>Boop</p>
+        <% else %>
         <%= render 'search' %>
         <% @lists.each do |list| %>
             <li><%= link_to list.name, list %></li>
+        <% end %>
         <% end %>
 
 
