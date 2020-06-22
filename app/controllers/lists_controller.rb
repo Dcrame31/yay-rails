@@ -43,7 +43,7 @@ class ListsController < ApplicationController
     def show
 
         if admin?
-            admin_access
+            admin_user_access
         else
             regular_user_access
         end
@@ -101,7 +101,7 @@ class ListsController < ApplicationController
         @list.items.clear
     end
 
-    def admin_access
+    def admin_user_access
         if params[:category_ids]
             @category = Category.all.find_by(id:params[:id])
             @list = @category.lists.find(params[:id]) if @category

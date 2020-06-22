@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_access
-      unless logged_in? && admin?
+      unless logged_in? && current_user
         message("You must be an admin to access this information.")
         redirect_to root_path
       end
