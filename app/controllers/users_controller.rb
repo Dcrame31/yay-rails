@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     end
 
     def users
+        @user = current_user
         @users = User.all
     end
     
@@ -28,7 +29,11 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.all.find_by(id:[params[:id]])
+        if admin?
+            @user = User.all.find_by(id:[params[:id]])
+        else
+            redirect_to root_path
+        end
     end
 
     def edit

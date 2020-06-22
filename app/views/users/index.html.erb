@@ -3,7 +3,8 @@
     <% if name = session[:name] %>
 
     <%= flash_message %>
-
+<div class="center">
+    <div class="info">
     <h1>
         Welcome <%= name %>!!! 
     </h1> 
@@ -53,11 +54,11 @@
 
 
     <% end  %>
+        </div>
+</div>
     <p><%= render 'logout' %></p>
         
 <% else %>
     <%# <h1> Please <%= link_to 'sign up', signup_path %> 
     <%# <%= link_to 'log in', login_path %> </h1> %> %>
 <% end %>
-    </div>
-</div>

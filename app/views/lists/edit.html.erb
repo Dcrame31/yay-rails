@@ -4,4 +4,4 @@
 
 <%= render partial: 'form', locals: {list: @list} %>
 
-<p><%= link_to 'Home', root_path %> <%= link_to 'Log out', logout_path %></p>
+<p><%= render '/users/home' %> <%= render '/users/logout' %></p>

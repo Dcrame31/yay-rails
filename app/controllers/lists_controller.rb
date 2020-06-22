@@ -3,35 +3,19 @@ class ListsController < ApplicationController
     before_action :admin_access, only: [:index]
 
     def index
+        user
     end
 
     def new
+        user
         @list = List.new :category_ids => params[:category_ids]
-        # if params[:category_ids]
-        #     @list = List.new(category_ids: params[:category_ids])
-        # else
-        #     @list = List.new
-        # end
-        
+       
         list_builder
         @list.categories.build
-
-        # if params[:category_ids]
-        #     @category = current_user.categories.find(params[:category_ids]) 
-        #     @list.update(category_ids: @category)
-        # end
-        # if params[:category_ids]
-        #     @category = current_user.categories.find_by_id(params[:category_ids])
-        #     @list = List.new if @category
-        #     @list.update(category_ids: @category)
-        #     list_builder
-        #     @list.categories.build
-        # else
-        #     @list = List.new
-        # end
     end
 
     def create
+        user
         @list = List.create(list_params)
         if @list.valid?
             redirect_to list_path(@list)
@@ -41,7 +25,7 @@ class ListsController < ApplicationController
     end 
 
     def show
-
+        user
         if admin?
             admin_user_access
         else
@@ -50,12 +34,14 @@ class ListsController < ApplicationController
     end
 
     def edit
+        user
         @list = List.find_by_id(params[:id])
 
         list_builder
     end
 
     def update
+        user
         @list = List.find_by_id(params[:id])
         clear_content
         @list.update(list_params)
