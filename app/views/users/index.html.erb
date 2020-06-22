@@ -1,9 +1,9 @@
-<div class="center">
-    <div class="info">
+
     <% if name = session[:name] %>
 
     <%= flash_message %>
-
+<div class="center">
+    <div class="info">
     <h1>
         Welcome <%= name %>!!! 
     </h1> 
@@ -53,11 +53,18 @@
 
 
     <% end  %>
+
     <p><%= render 'logout' %></p>
         
 <% else %>
-    <%# <h1> Please <%= link_to 'sign up', signup_path %> 
-    <%# <%= link_to 'log in', login_path %> </h1> %> %>
+    
+        
+        <h1>Welcome to Budget-Lister!</h1>
+        <p>A helpful budgeting app</p>
+        <img src="/assets/budget.png" alt="calculator_image" class="img-responsive" width = "40%">
+        <%# <img src="/notepad.png" alt="notebook_image" class="image"> %>
+        
+    
 <% end %>
-    </div>
+        </div>
 </div>

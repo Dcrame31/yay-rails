@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
     before_action :admin_access, only: [:index]
 
     def index
+        user
     end
 
     def new
@@ -16,6 +17,7 @@ class CategoriesController < ApplicationController
     end
 
     def show
+        user
         if admin?
             @category = Category.find_by(id:params[:id])
         else
@@ -28,7 +30,7 @@ class CategoriesController < ApplicationController
     end
 
     def edit
-        @user = current_user
+        user
         if admin?
             @category = Category.find_by(id:params[:id])
         else

@@ -3,4 +3,4 @@
 
 <%= button_to 'Delete User', user_path(@user), :method => 'delete' %>
 
-<p><%= link_to 'Home', root_path %> <%= link_to 'Log out', logout_path %></p>
+<p><%= render 'home' %> <%= render 'logout' %></p>
