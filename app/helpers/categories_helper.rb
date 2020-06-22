@@ -11,4 +11,6 @@ module CategoriesHelper
             "You currently do not have any lists in this category."
         end
     end
+
+    
 end

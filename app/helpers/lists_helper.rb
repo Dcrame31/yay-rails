@@ -15,8 +15,8 @@ module ListsHelper
     def list_info
         if current_user.lists.empty?
             "You currently do not have any lists."
-        else
-            "Your biggest budget is $#{highest_budget} for #{link_to most_expensive_list, list_path(most_expensive_list_object)}"
+        # else
+            # "Your biggest budget is $#{highest_budget} for #{link_to most_expensive_list, list_path(most_expensive_list_object)}"
         end
     end
 

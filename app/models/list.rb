@@ -7,7 +7,7 @@ class List < ApplicationRecord
     validates :budget, :presence => true
     validates :categories, :presence => true 
     validates_uniqueness_of :name, scope: :user_id, :case_sensitive => false
-    validate :zero?
+    validate :price_zero?
 
     scope :highest_budget, -> { where(budget: self.maximum(:budget))}
 
@@ -23,7 +23,7 @@ class List < ApplicationRecord
     def items_attributes=(item_attributes)
         item_attributes.values.each do |item_attribute|
           if item_attribute[:name].present?
-            item = Item.find_or_create_by(item_attribute)
+            item = Item.create(item_attribute)
             self.items << item
           end
         end
@@ -53,7 +53,7 @@ class List < ApplicationRecord
       end
     end
 
-    def zero?
+    def price_zero?
       self.items.each do |item|
         if item.price.to_f < 0
             errors.add(:price, "can't be negative.")

@@ -17,10 +17,14 @@ class CategoriesController < ApplicationController
     end
 
     def show
-        @category = current_user.categories.find_by_id(params[:id])
-        if !@category
-            message("Category not found.")
-            redirect_to root_path
+        if admin?
+            @category = Category.find_by(id:params[:id])
+        else
+            @category = current_user.categories.find_by(id:params[:id])
+            if !@category
+                message("Category not found.")
+                redirect_to root_path
+            end
         end
     end
 
@@ -30,12 +34,10 @@ class CategoriesController < ApplicationController
     end
     
     def update
-        @category = Category.find_by(id:params[:id])
-        @category.update(category_params)
-        if @category.valid?
-            redirect_to @category
+        if admin?
+            admin_category_update
         else
-            render '/categories/edit'
+            regular_user_update
         end
     end
 
@@ -48,6 +50,26 @@ class CategoriesController < ApplicationController
 
     def category_params
         params.require(:category).permit(:name, :user_id)
+    end
+
+    def admin_category_update
+        @category = Category.find_by(id:params[:id])
+        @category.update(category_params)
+        if @category.valid?
+            redirect_to @category
+        else
+            render '/categories/edit'
+        end
+    end
+
+    def regular_user_update
+        @category = current_user.find_by(id:params[:id])
+        @category.update(category_params)
+        if @category.valid?
+            redirect_to @category
+        else
+            render '/categories/edit'
+        end
     end
 
 end
