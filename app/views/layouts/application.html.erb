@@ -6,10 +6,50 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
+    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'  %>
   </head>
-
   <body>
-    <%= yield %>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
+        <% if logged_in? %>
+        <%= link_to "#{@user.username}'s profile", user_path(@user), class:"navbar-brand" %>
+        <%= link_to 'Log Out', logout_path, class: "navbar-brand"%>
+        <% else %>
+        <%= link_to "Sign Up", new_user_path, class:"navbar-brand" %>
+        <%= link_to "Log in", login_path, class:"navbar-brand" %>
+        <% end %>
+        </div>
+
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <!-- content -->
+    
+    <div class="container"  role="main">
+      <div class="center alert">
+      <% if flash %>
+        <%= flash[:alert] %>
+      <% end %>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>
+
+  <%# <body>
+    <%= yield %>
+  <%# </body>
+</html> %> 

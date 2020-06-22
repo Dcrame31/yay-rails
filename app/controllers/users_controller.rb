@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
     def index
         @category = Category.new
+        @user = current_user
     end
 
     def users
