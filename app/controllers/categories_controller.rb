@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
     before_action :require_login
+    before_action :admin?, only: [:index]
 
     def index
         
@@ -17,6 +18,10 @@ class CategoriesController < ApplicationController
 
     def show
         @category = current_user.categories.find_by_id(params[:id])
+        if !@category
+            message("Category not found.")
+            redirect_to root_path
+        end
     end
 
     def edit
