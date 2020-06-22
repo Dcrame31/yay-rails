@@ -43,7 +43,7 @@
 
 
 <p>Create a new category</p>
-<%= render '/categories/form' %>
+<%= render partial: '/categories/form', locals: {category: @category} %>
 
     <br>
 

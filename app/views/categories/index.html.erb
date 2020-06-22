@@ -2,3 +2,5 @@
 <% Category.all.order(:name).each do |category| %>
 <li><%= link_to category.name, category %></li>
 <% end %>
+
+<p><%= render '/users/home' %> <%= render '/users/logout' %></p>

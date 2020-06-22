@@ -29,8 +29,12 @@ class CategoriesController < ApplicationController
     end
 
     def edit
-        @category = current_user.categories.find_by(id:params[:id])
         @user = current_user
+        if admin?
+            @category = Category.find_by(id:params[:id])
+        else
+            @category = current_user.categories.find_by(id:params[:id])
+        end
     end
     
     def update
@@ -53,17 +57,17 @@ class CategoriesController < ApplicationController
     end
 
     def admin_category_update
-        @category = Category.find_by(id:params[:id])
+        @category = Category.all.find_by(id:params[:id])
         @category.update(category_params)
         if @category.valid?
-            redirect_to @category
+            redirect_to categories_path
         else
             render '/categories/edit'
         end
     end
 
     def regular_user_update
-        @category = current_user.find_by(id:params[:id])
+        @category = current_user.categories.find_by(id:params[:id])
         @category.update(category_params)
         if @category.valid?
             redirect_to @category
