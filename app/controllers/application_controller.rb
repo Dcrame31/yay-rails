@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
-    helper_method :current_user, :logged_in?, :require_login, :message, :admin?, :admin_access?
+    helper_method :current_user, :logged_in?, :require_login, :message, :admin?, :admin_access
     before_action :set_current_user
     
     def current_user
@@ -30,8 +30,8 @@ class ApplicationController < ActionController::Base
       current_user.admin
     end
 
-    def admin_access?
-      unless admin?
+    def admin_access
+      unless logged_in? && admin?
         message("You must be an admin to access this information.")
         redirect_to root_path
       end

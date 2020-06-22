@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
     # before_action :require_login
+    before_action :admin_access, only: [:users, :show, :edit, :delete]
 
     def index
         @category = Category.new
+    end
+
+    def users
+        @users = User.all
     end
     
     def new
@@ -21,10 +26,27 @@ class UsersController < ApplicationController
         end
     end
 
+    def show
+        @user = User.all.find_by(id:[params[:id]])
+    end
+
     def edit
+        @user = User.all.find_by(id:[params[:id]])
     end
 
     def update
+        @user = User.all.find_by(id:[params[:id]])
+        @user.update(user_params)
+        if @user.valid?
+            redirect_to all_users_path
+        else
+            render 'show'
+        end
+    end
+
+    def destroy
+        User.find_by(id:params[:id]).destroy
+        redirect_to all_users_path
     end
 
     private

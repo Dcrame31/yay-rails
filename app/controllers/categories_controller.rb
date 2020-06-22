@@ -1,9 +1,8 @@
 class CategoriesController < ApplicationController
     before_action :require_login
-    before_action :admin?, only: [:index]
+    before_action :admin_access, only: [:index]
 
     def index
-        
     end
 
     def new

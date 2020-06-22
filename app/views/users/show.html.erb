@@ -1,7 +1,6 @@
-<%= render 'errors' %>
-
-<h1>User Signup</h1>
-
+<h1><%= @user.username %></h1>
 <%= render partial: 'form', locals: {user:@user} %>
+
+<%= button_to 'Delete User', user_path(@user), :method => 'delete' %>
 
 <p><%= link_to 'Home', root_path %> <%= link_to 'Log out', logout_path %></p>

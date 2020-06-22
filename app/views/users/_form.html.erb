@@ -1,0 +1,19 @@
+<%= form_for @user do |f| %>
+<div class="form-group">
+<%= f.label :username %><br>
+<%= f.text_field :username, class:"form-control" %><br>
+</div>
+<div class="form-group">
+<%= f.label :email %><br>
+<%= f.text_field :email, class:"form-control" %><br>
+</div>
+<div class="form-group">
+<%= f.label 'Admin?' %>
+<%= f.check_box :admin %><br>
+</div>
+<div class="form-group">
+<%= f.label :password %><br>
+<%= f.password_field :password, class:"form-control" %><br>
+</div>
+<%= f.submit user.persisted? ? 'Update User' : 'Create User', class:"btn btn-primary" %><br>
+<% end %>
