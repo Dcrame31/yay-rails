@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
-    # before_action :require_login
+    before_action :require_login, except: [:new, :create, :index]
     before_action :admin_access, only: [:users, :show, :edit, :delete]
 
     def index
         @category = Category.new
-        @user = current_user
+        user
+        @lists = current_user.search(params[:query]) 
     end
 
     def users
-        @user = current_user
+        user
         @users = User.all
     end
     
@@ -58,7 +59,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :email, :password, :admin)
+        params.require(:user).permit(:username, :email, :password, :admin, :query)
     end
 
 end
