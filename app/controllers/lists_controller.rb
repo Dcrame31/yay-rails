@@ -61,7 +61,7 @@ class ListsController < ApplicationController
             end
         else
             if
-                @list = List.find_by(id:params[:id])
+                @list = current_user.lists.find_by(id:params[:id])
                 @item = Item.new
             elsif !@list
                 message("List not found")
