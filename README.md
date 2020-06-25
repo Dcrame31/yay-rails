@@ -1,24 +1,14 @@
-# README
+# BUDGET-LISTER
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+* Clone repo
 
-* Ruby version
+* Run bundle install
 
-* System dependencies
+* Enter 'rails s' in terminal
 
-* Configuration
+* Go to local browser e.g. 'http://localhost:3000/'
 
-* Database creation
+* Sign up via email or log in via Github 
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
