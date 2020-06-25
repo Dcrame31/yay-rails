@@ -1,4 +1,4 @@
-<h1>New Category</h1>
+<h1>Create a new category</h1>
 <%= form_for @user do |f| %>
 <%= f.label :name %>
 <%= f.fields_for :categories, @user.categories.build do |categories_fields| %>
@@ -8,4 +8,3 @@
 <%= f.submit 'Create Category' %><br>
 <% end %>
 
-<p><%= link_to 'Home', root_path %></p>

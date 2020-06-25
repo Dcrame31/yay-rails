@@ -8,6 +8,8 @@
         Welcome <%= name %>!!! 
     </h1> 
 
+    <br>
+
     <% if admin? %>
         <p> <%= link_to 'View users', all_users_path %> </p>
         <p>  <%=link_to 'View lists', lists_path %> </p>
@@ -27,11 +29,13 @@
 
         <% end %>
 
-    <p><%= link_to 'Create a new list', new_list_path %></p>
+    <p><%= button_to 'Create New list', new_list_path, :method => 'get' %></p>
+
+    <br>
 
         <h3>Categories</h3>
         <%= category_empty? %>
-
+    
        <ol>
 
         <% current_user.categories.order(:name).each do |category| %>
@@ -51,19 +55,19 @@
 
     <br>
         <% if current_user.lists.nil? %>
-        <p>Boop</p>
+            
         <% else %>
         <%= render 'search' %>
         <% @lists.each do |list| %>
             <li><%= link_to list.name, list %></li>
-        <% end %>
+        <% end %> 
         <% end %>
 
 
     <% end  %>
         </div>
 </div>
-    <p><%= render 'logout' %></p>
+   
         
 <% else %>
     <div class="center">

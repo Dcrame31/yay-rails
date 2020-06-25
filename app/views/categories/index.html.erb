@@ -1,6 +1,14 @@
 <h1>Categories</h1>
-<% Category.all.order(:name).each do |category| %>
-<li><%= link_to category.name, category %></li>
-<% end %>
 
-<p><%= render '/users/home' %> <%= render '/users/logout' %></p>
+<table class="table">
+    <thead>
+    <tbody>
+<% Category.all.order(:name).each do |category| %>
+        <tr>
+            <td>
+                <%= link_to category.name, category %>
+            </td>
+        </tr>
+<% end %>
+    </tbody>
+</table>
