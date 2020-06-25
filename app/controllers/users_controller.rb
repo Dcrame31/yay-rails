@@ -5,7 +5,11 @@ class UsersController < ApplicationController
     def index
         @category = Category.new
         user
-        @lists = current_user.search(params[:query]) 
+        if logged_in?
+            if !current_user.lists.nil?
+                @lists = current_user.search(params[:query]) 
+            end
+        end
     end
 
     def users

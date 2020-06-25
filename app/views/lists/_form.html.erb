@@ -1,9 +1,17 @@
 <%= form_for @list do |f| %>
+<div class="form-group">
 <%= f.label :name %><br>
+</div>
+<div class="form-group">
 <%= f.text_field :name %><br>
+</div>
+<div class="form-group">
 <%= f.label :description %><br>
+</div>
+<div class="form-group">
 <%= f.text_area :description %><br>
-
+</div>
+<div class="form-group">
 <p>
 <%= f.label 'Items:' %>
 <br>
@@ -19,22 +27,30 @@
     <%= item.hidden_field :list_id, :value => @list.id %>
     <% end %>
 </p>
-
+</div>
 <br>
-
+<div class="form-group">
 <%= f.label :budget %><br>
+</div>
+<div class="form-group">
 <%= f.number_field :budget %><br>
+</div>
 <br>
+<div class="form-group">
 <%= f.label :category %><br>
+</div>
+<div class="form-group">
 <%= f.collection_check_boxes :category_ids, current_user.categories.all, :id, :name %><br>
+</div>
 <br>
+<div class="form-group">
 <%= f.label 'New Category'%><br>
-<%# <%= f.fields_for :categories do |category| %> 
-    <%# <%= category.hidden_field :user_id, :value => "current_user.id" %> 
-  <%# <% end %> 
+</div>
+<div class="form-group">
 <input value type="text" name="list[categories_attributes][0][name]" id="list_categories_attributes_0_name"><br>
 <input value="current_user.id" type="hidden" name="list[categories_attributes][0][user_id]" id="list_categories_attributes_0_name">
 <%= f.hidden_field :user_id, :value => current_user.id %>
 <%# <%= f.hidden_field :category_ids, :value => @category %> 
+</div>
 <%= f.submit list.persisted? ? 'Update List': 'Create List' %><br>
 <% end %>
