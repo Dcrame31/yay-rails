@@ -32,9 +32,7 @@ class List < ApplicationRecord
     end
 
     def list_cost
-      self.items.reduce(0) do |s, item|
-        s += item.item_cost.to_f
-      end
+      self.items.reduce(0){|s, item| s += item.item_cost.to_f }.round(2)
     end
 
     def budget_over
