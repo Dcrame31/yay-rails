@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
     before_action :admin_access, only: [:index]
 
     def index
+        @category = Category.all.order(:name)
         user
     end
 
