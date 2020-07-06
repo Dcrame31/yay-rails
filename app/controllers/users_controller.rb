@@ -18,7 +18,11 @@ class UsersController < ApplicationController
     end
     
     def new
-        @user = User.new
+        if logged_in?
+            redirect_to root_path
+        else
+            @user = User.new
+        end
     end
 
     def create
@@ -58,6 +62,14 @@ class UsersController < ApplicationController
     def destroy
         User.find_by(id:params[:id]).destroy
         redirect_to all_users_path
+    end
+
+    def most_recent_list
+        if admin?
+            @list = List.most_recent_list
+        else
+            redirect_to root_path
+        end
     end
 
     private

@@ -1,7 +1,7 @@
-
     <% if name = session[:name] %>
 
     <%= flash_message %>
+
 <div class="center">
     <div class="info">
     <h1>
@@ -15,6 +15,8 @@
         <p>  <%=link_to 'View lists', lists_path %> </p>
         <p> <%= link_to 'View categories', categories_path %></p>
         <p>Admin</p>
+
+        <%= link_to "Most Recent List", most_recent_list_path %>
     <% else %>
 
         <h3>Lists</h3>
@@ -28,6 +30,7 @@
             </p>
 
         <% end %>
+        
 
     <p><%= button_to 'Create New list', new_list_path, :method => 'get' %></p>
 
