@@ -4,7 +4,7 @@ class User < ApplicationRecord
     has_many :categories,
               dependent: :nullify
     has_many :items, through: :lists
-    # validates :email, :presence => true
+    validates :email, :presence => true, :uniqueness => true
     validates :username, :presence => true, :uniqueness => true
     validates :password, :presence => true
     has_secure_password
@@ -15,6 +15,7 @@ class User < ApplicationRecord
         where(:email => auth_hash["info"]["email"]).first_or_create! do |user|
             user.password = SecureRandom.hex
             user.username = auth_hash['info']['nickname']
+            user.email = auth_hash["info"]["nickname"]
         end
     end
 
