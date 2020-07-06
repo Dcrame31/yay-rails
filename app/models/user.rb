@@ -1,16 +1,20 @@
 class User < ApplicationRecord
-    has_many :lists
-    has_many :categories
+    has_many :lists,
+              dependent: :nullify
+    has_many :categories,
+              dependent: :nullify
     has_many :items, through: :lists
-    validates :email, :presence => true
+    # validates :email, :presence => true
     validates :username, :presence => true, :uniqueness => true
     validates :password, :presence => true
     has_secure_password
-    
+
+ 
 
     def self.find_or_create_by_omniauth(auth_hash)
-        where(:email => auth_hash["info"]["email"]).first_or_create do |user|
+        where(:email => auth_hash["info"]["email"]).first_or_create! do |user|
             user.password = SecureRandom.hex
+            user.username = auth_hash['info']['nickname']
         end
     end
 
@@ -43,11 +47,11 @@ class User < ApplicationRecord
 
     def search(query)
         if query
-          self.lists.where("name LIKE ? OR description LIKE ?", "%#{query}%", "%#{query}%")
+          self.lists.where("name LIKE ? OR description LIKE ? OR budget LIKE ?", "%#{query}%", "%#{query}%", "%#{query}%")
         else
           all_lists
         end
-      end
+    end
 end
 
 

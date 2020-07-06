@@ -5,12 +5,9 @@ Rails.application.routes.draw do
   resources :sessions, only: [:index]
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
-  get '/logout', to: "sessions#destroy", as: :logout
+  get '/logout', to: "sessions#destroy"
   
-  
-  #get 'auth/:provider/callback', to: 'sessions#create'
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-  # get "auth/failure", to: redirect(‘/’)
 
   resources :categories do
     resources :lists
@@ -21,8 +18,11 @@ Rails.application.routes.draw do
   get '/signup', to: "users#new"
   post '/signup', to: "users#create"
 
+
   resources :users
   get '/all_users', to: "users#users"
+  get '/most_recent_list', to: "users#most_recent_list"
+
 
   resources :items, only: [:new, :create]
 end
