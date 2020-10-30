@@ -1,5 +1,8 @@
+
+
 # BUDGET-LISTER
 
+This is an app that allows users to sign up and create lists with a target budgets to assist with keeping track of expenses. It includes a functionality of letting the user know how much they are on track.
 
 * Clone repo
 
